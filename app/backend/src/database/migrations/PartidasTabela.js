@@ -1,24 +1,32 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('matches', {
-      id: { allowNull: false, autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER },
-      homeTeam: {
+      id: {
         allowNull: false,
-        type: Sequelize.INTEGER },
-      homeTeamGoals: { allowNull: false, type: Sequelize.INTEGER },
-      awayTeam: { allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      awayTeamGoals: {
+      home_team: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      inProgress: {
+      home_team_goals: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.INTEGER,
       },
+      away_team: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      away_team_goals: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      in_progress: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN,
+        }
     });
   },
   down: async (queryInterface) => {
