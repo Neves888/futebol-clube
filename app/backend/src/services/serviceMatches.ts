@@ -1,10 +1,15 @@
 import Teams from '../database/models/TeamsModel';
 import Matches from '../database/models/MatchesModel';
+import JWT from '../utils/jwt';
+import Validation from './validations/matchesValidation';
+// import NotFoundException from '../utils/NotFound';
 
 export default class MatchesService {
   private _matches = Matches;
+  private validation = new Validation();
+  private jwt = new JWT();
 
-  getAllMatches = async () => {
+  async getAllMatches() {
     const matches = await this._matches.findAll({
       include: [
         { model: Teams, as: 'teamHome', attributes: { exclude: ['id'] } },
@@ -12,9 +17,9 @@ export default class MatchesService {
       ],
     });
     return matches;
-  };
+  }
 
-  getMatches = async (progress: boolean) => {
+  async getMatches(progress: boolean) {
     const matches = await this._matches.findAll({
       where: { inProgress: progress },
       include: [
@@ -22,6 +27,20 @@ export default class MatchesService {
         { model: Teams, as: 'teamAway', attributes: { exclude: ['id'] } },
       ],
     });
-    return { code: null, response: matches };
-  };
+    return matches;
+  }
+
+  // async postMatches(homeTeam: number, awayTeam: number) {
+  //   const { code, response } = this.validation.fields(homeTeam, awayTeam);
+
+  //   if (code) {
+  //     return { code, response };
+  //   }
+  //   if (code === homeTeam && code === awayTeam) {
+  //     return { code: 422, response: 'It is not possible to create a match with two equal teams' };
+  //   }
+  //   if (code === NotFoundException) {
+  //     return { code: 404, response: 'There is no team with such id!' };
+  //   }
+  // }
 }
