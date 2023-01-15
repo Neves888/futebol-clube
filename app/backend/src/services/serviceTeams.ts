@@ -1,5 +1,6 @@
 import { IResponse } from '../interfaces/ILogin';
 import Teams from '../database/models/TeamsModel';
+import { ITeams } from '../interfaces/ITeams';
 
 export default class TeamsService {
   private teams = Teams;
@@ -8,6 +9,11 @@ export default class TeamsService {
     const teams = await this.teams.findAll();
 
     return { code: null, response: teams };
+  }
+
+  async allTeams(): Promise<ITeams[]> {
+    const teams = await this.teams.findAll();
+    return teams;
   }
 
   async findIdTeams(id: string): Promise<IResponse> {
