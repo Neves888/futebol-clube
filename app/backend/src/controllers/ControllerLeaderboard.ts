@@ -4,9 +4,10 @@ import Leaderboard from '../services/serviceLeaderboard';
 export default class LeaderboardController {
   private _leaderboard = new Leaderboard();
 
-  // async getLeaderboard(req: Request, res: Response) {
-
-  // }
+  async getLeaderboard(req: Request, res: Response) {
+    const board = await this._leaderboard.getLeaderboard();
+    res.status(200).json(board);
+  }
 
   async getLeaderboardHome(req: Request, res: Response) {
     const home = await this._leaderboard.getLeaderboardHome();

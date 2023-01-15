@@ -2,6 +2,7 @@ import TeamsService from './serviceTeams';
 import MatchesService from './serviceMatches';
 import leaderboardHome, { IHome } from '../utils/leaderboardHome';
 import leaderboardAway from '../utils/leaderboardAway';
+import leaderboard from '../utils/leaderboard';
 
 export default class LeaderboardService {
   private _teams = new TeamsService();
@@ -28,9 +29,15 @@ export default class LeaderboardService {
       return 1;
     }));
 
-  // async getLeaderboard(req: Request, res: Response) {
-
-  // }
+  async getLeaderboard() {
+    const home = await this.getLeaderboardHome();
+    const away = await this.getLeaderboardAway();
+    if (home && away) {
+      const board = [...away, ...home];
+      const options = leaderboard(board);
+      return LeaderboardService.options(options);
+    }
+  }
 
   async getLeaderboardHome() {
     const teams = await this._teams.allTeams();
