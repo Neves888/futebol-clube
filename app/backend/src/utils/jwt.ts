@@ -11,13 +11,13 @@ export default class JWT {
 
   verifyToken = (token: string): jwt.JwtPayload => {
     if (!token) {
-      return { code: 401, response: 'token not found' };
+      return { code: 401, response: 'Token must be a valid token' };
     }
     try {
       const userToken = jwt.verify(token, process.env.JWT_SECRET || 'jwt_secret');
       return { code: null, response: userToken };
     } catch (error) {
-      return { code: 401, response: 'invalid token' };
+      return { code: 401, response: 'Token must be a valid token' };
     }
   };
 }
