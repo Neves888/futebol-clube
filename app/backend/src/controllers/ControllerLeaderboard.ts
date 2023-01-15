@@ -13,7 +13,8 @@ export default class LeaderboardController {
     res.status(200).json(home);
   }
 
-  // async getLeaderboardAway(req: Request, res: Response) {
-
-  // }
+  async getLeaderboardAway(req: Request, res: Response) {
+    const away = await this._leaderboard.getLeaderboardAway();
+    res.status(200).json(away);
+  }
 }

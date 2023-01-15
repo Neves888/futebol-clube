@@ -1,6 +1,7 @@
 import TeamsService from './serviceTeams';
 import MatchesService from './serviceMatches';
 import leaderboardHome, { IHome } from '../utils/leaderboardHome';
+import leaderboardAway from '../utils/leaderboardAway';
 
 export default class LeaderboardService {
   private _teams = new TeamsService();
@@ -41,7 +42,15 @@ export default class LeaderboardService {
       return LeaderboardService.options(result);
     }
   }
-  // async getLeaderboardAway(req: Request, res: Response) {
 
-  // }
+  async getLeaderboardAway() {
+    const teams = await this._teams.allTeams();
+    const matches = await this._matches.getMatches(false);
+
+    if (teams && matches) {
+      const result = await Promise.all(teams.map((team) =>
+        leaderboardAway(this._obj, team, matches)));
+      return LeaderboardService.options(result);
+    }
+  }
 }
