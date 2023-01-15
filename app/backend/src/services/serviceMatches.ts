@@ -2,7 +2,7 @@ import Teams from '../database/models/TeamsModel';
 import Matches from '../database/models/MatchesModel';
 import JWT from '../utils/jwt';
 import Validation from './validations/matchesValidation';
-import { IMatches } from '../interfaces/IMatches';
+import { IMatches, IMatchesGoals } from '../interfaces/IMatches';
 
 export default class MatchesService {
   private _matches = Matches;
@@ -58,5 +58,10 @@ export default class MatchesService {
   async patchMatches(id: string) {
     await this._matches.update({ inProgress: false }, { where: { id } });
     return 'Finished';
+  }
+
+  async patchIdMatches(id: string, body: IMatchesGoals) {
+    const { awayTeamGoals, homeTeamGoals } = body;
+    return this._matches.update({ awayTeamGoals, homeTeamGoals }, { where: { id } });
   }
 }
