@@ -1,10 +1,18 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Informativo de Futebol ⚽🏟️
+
+Bem-vindo ao projeto Informativo de Futebol! 🖖🏾 <br>
+Este é um projeto empolgante que visa fornecer uma plataforma informativa completa sobre partidas e classificações de futebol. Desenvolvemos uma API robusta utilizando o método TDD (Test-Driven Development) e a integramos perfeitamente ao nosso backend dockerizado, utilizando a poderosa modelagem de dados através do Sequelize.
+
+## Funcionalidades 📱
+
+- Visualização de partidas de futebol
+- Consulta de classificações de times
+
+## Tecnologias Utilizadas 👩🏾‍💻
+
+- Node.js
+- Sequelize
+- Docker
+- Docker Compose
+- MySQL
+
